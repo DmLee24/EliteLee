@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EliteLee典藏级现实整合包·传承版 - 极致游戏体验</title>
+    <meta name="description" content="基于《侠盗猎车手V》v1.71版本构建的沉浸式拟真系统，通过独家筛选、深度调校、兼容性重构与稳定性优化，将数百项模组整合为一个协同运作的游戏体验。" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      crossorigin="anonymous"
+    />
+    <script type="module" crossorigin src="/EliteLee/assets/index-Brj7_iYf.js"></script>
+    <link rel="stylesheet" crossorigin href="/EliteLee/assets/index-DUnBKePN.css">
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- 使用相对路径引用脚本，确保在GitHub Pages上正确加载 -->
+    
+    <!-- 添加更强大的错误处理脚本 -->
+    <script>
+      // 全局错误处理
+      window.addEventListener('error', function(e) {
+        console.error('全局错误:', e.error);
+        // 显示错误信息给用户
+        const root = document.getElementById('root');
+        if (root) {
+          root.innerHTML = `
+            <div class="flex items-center justify-center min-h-screen bg-gray-100">
+              <div class="text-center p-8 bg-white rounded-lg shadow-lg">
+                <i class="fa-solid fa-exclamation-circle text-red-500 text-4xl mb-4"></i>
+                <h2 class="text-2xl font-bold mb-2">页面加载出错</h2>
+                <p class="text-gray-600 mb-4">错误信息: ${e.error?.message || '未知错误'}</p>
+                <p class="text-gray-500 text-sm">请刷新页面重试，如果问题持续存在，请联系技术支持。</p>
+              </div>
+            </div>
+          `;
+        }
+      });
+      
+      // 未捕获的Promise拒绝处理
+      window.addEventListener('unhandledrejection', function(e) {
+        console.error('未处理的Promise拒绝:', e.reason);
+        // 显示错误信息给用户
+        const root = document.getElementById('root');
+        if (root) {
+          root.innerHTML = `
+            <div class="flex items-center justify-center min-h-screen bg-gray-100">
+              <div class="text-center p-8 bg-white rounded-lg shadow-lg">
+                <i class="fa-solid fa-exclamation-circle text-red-500 text-4xl mb-4"></i>
+                <h2 class="text-2xl font-bold mb-2">数据加载出错</h2>
+                <p class="text-gray-600 mb-4">错误信息: ${e.reason?.message || '未知错误'}</p>
+                <p class="text-gray-500 text-sm">请刷新页面重试，如果问题持续存在，请联系技术支持。</p>
+              </div>
+            </div>
+          `;
+        }
+      });
+    </script>
+  </body>
+</html>
