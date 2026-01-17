@@ -447,7 +447,7 @@ export default function Home() {
 
   const sectionRefs = {
   hero: useRef<HTMLDivElement>(null),
-  modules: useRef<HTMLDivElement>(null),
+  comparison: useRef<HTMLDivElement>(null),
   nve: useRef<HTMLDivElement>(null),
   libertyCity: useRef<HTMLDivElement>(null),
   terrain: useRef<HTMLDivElement>(null),
@@ -467,13 +467,13 @@ export default function Home() {
             const scrollPosition = window.scrollY + 100;
             setScrollPosition(window.scrollY);
             
-            let currentSection = "hero";
+  let currentSection = "hero";
 
-            Object.entries(sectionRefs).forEach(([section, ref]) => {
-                if (ref.current && scrollPosition >= ref.current.offsetTop) {
-                    currentSection = section;
-                }
-            });
+  Object.entries(sectionRefs).forEach(([section, ref]) => {
+      if (ref && ref.current && scrollPosition >= ref.current.offsetTop) {
+          currentSection = section;
+      }
+  });
 
             setActiveSection(currentSection);
         };
@@ -512,22 +512,22 @@ export default function Home() {
                                 <nav className="hidden md:flex items-center space-x-4">
                                     {Object.keys(sectionRefs).map(section => {
               const getSectionTitle = (sectionKey: string) => {
-                  const titles: Record<string, string> = {
-                      hero: "首页",
-                      modules: "核心功能",
-                      nve: "次世代重置与光追",
-                      libertyCity: "新版自由城",
-                      terrain: "地形生态",
-                      performance: "性能",
-                      physics: "物理交互",
-                      roleplay: "角色扮演",
-                      rdePev: "RDE+PEV",
-                      police: "警察模组",
-                      updates: "更新",
-                      pricing: "订阅",
-                      modifiers: "修改器",
-                      payment: "支付与协议"
-                  };
+                    const titles: Record<string, string> = {
+                       hero: "首页",
+                       comparison: "画面对比",
+                       nve: "次世代重制与光追",
+                       libertyCity: "新版自由城",
+                       terrain: "地形生态",
+                       performance: "性能",
+                       physics: "物理交互",
+                       roleplay: "角色扮演",
+                       rdePev: "RDE+PEV",
+                       police: "警察模组",
+                       updates: "更新",
+                       pricing: "订阅",
+                       modifiers: "修改器",
+                       payment: "支付与协议"
+                   };
 
                                             return titles[sectionKey] || sectionKey;
                                         };
@@ -631,10 +631,18 @@ export default function Home() {
                                                 className="w-auto h-auto max-h-[2.2em] object-contain inline-block align-middle"
                                             />
                                         </span>
-                                        <span className="text-amber-500 font-black tracking-wider drop-shadow-lg text-shadow-amber">典藏级</span><br />
-                                        <span
-                                            className="text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] text-shadow">现实整合包·传承版
-                                        </span>
+                                         <span className="text-amber-500 font-black tracking-wider drop-shadow-lg text-shadow-amber">典藏级</span><br />
+                                         <span
+                                             className="text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] text-shadow">现实整合包·传承版
+                                         </span>
+                                          <motion.div 
+                                            className="mt-6 text-amber-400 text-xl font-medium text-shadow-amber animate-pulse"
+                                            initial={{ opacity: 0 }}
+                                            animate={{ opacity: [0.7, 1, 0.7] }}
+                                            transition={{ duration: 2, repeat: Infinity, repeatType: "reverse" }}
+                                          >
+                                            当前整合包版本: v1.0.7
+                                          </motion.div>
                                     </h1>
                                     <p className="text-xl text-gray-300 mb-8 max-w-xl mx-auto lg:mx-0">基于《侠盗猎车手V》v1.71版本构建，通过独家筛选、深度调校、兼容性重构与稳定性优化，将数百项模组整合为一个协同运作的沉浸式拟真系统。
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   </p>
@@ -751,90 +759,143 @@ export default function Home() {
                     </motion.div>
                 </section>
                 {}
-                <section
-                    ref={sectionRefs.modules}
-                    className={`py-20 ${theme === "dark" ? "bg-gray-800" : "bg-white"}`}>
-                    <div className="container mx-auto px-4">
-                        <div className="text-center mb-16">
-                            <motion.h2
-                                className="text-3xl md:text-4xl font-bold mb-4"
-                                initial={{
-                                    opacity: 0,
-                                    y: 20
-                                }}
-                                whileInView={{
-                                    opacity: 1,
-                                    y: 0
-                                }}
-                                viewport={{
-                                    once: true
-                                }}
-                                transition={{
-                                    duration: 0.5
-                                }}>核心功能模块
-                                                                                                                                                                                                                                                                                                                                                                                                              </motion.h2>
-                            <motion.p
-                                className={`text-lg max-w-3xl mx-auto ${theme === "dark" ? "text-gray-300" : "text-gray-600"}`}
-                                initial={{
-                                    opacity: 0,
-                                    y: 20
-                                }}
-                                whileInView={{
-                                    opacity: 1,
-                                    y: 0
-                                }}
-                                viewport={{
-                                    once: true
-                                }}
-                                transition={{
-                                    duration: 0.5,
-                                    delay: 0.2
-                                }}>《EliteLee典藏级现实整合包·传承版》拥有九大核心功能模块，全方位提升您的游戏体验</motion.p>
-                        </div>
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                            {mainModules.map((module, index) => <motion.div
-                                key={module.title}
-                                className={`rounded-2xl p-6 ${theme === "dark" ? "bg-gray-900 border border-gray-700" : "bg-gray-50 border border-gray-100"} hover:shadow-xl transition-all duration-300 group`}
-                                initial={{
-                                    opacity: 0,
-                                    y: 30
-                                }}
-                                whileInView={{
-                                    opacity: 1,
-                                    y: 0
-                                }}
-                                viewport={{
-                                    once: true
-                                }}
-                                transition={{
-                                    duration: 0.5,
-                                    delay: index * 0.1
-                                }}
-                                whileHover={{
-                                    y: -5
-                                }}>
-                                <div
-                                    className={`w-14 h-14 rounded-full flex items-center justify-center mb-6 bg-amber-500/20 text-amber-500 text-2xl`}>
-                                    <i className={`fa-solid ${module.icon}`}></i>
-                                </div>
-                                <h3 className="text-xl font-bold mb-3">{module.title}</h3>
-                                <p
-                                    className={`mb-6 ${theme === "dark" ? "text-gray-400" : "text-gray-600"}`}>
-                                    {module.description}
-                                </p>
-                                <ul className="space-y-2">
-                                    {module.details.map((detail, idx) => <li key={idx} className="flex items-start">
-                                        <i className="fa-solid fa-circle text-amber-500 text-xs mt-2 mr-2"></i>
-                                        <span
-                                            className={`text-sm ${theme === "dark" ? "text-gray-300" : "text-gray-600"}`}>
-                                            {detail}
-                                        </span>
-                                    </li>)}
-                                </ul>
-                            </motion.div>)}
-                        </div>
-                    </div>
-                </section>
+    {/* 画面对比章节 */}
+    <section
+      className={`py-20 ${theme === "dark" ? "bg-gray-800/50" : "bg-gradient-to-b from-white to-gray-50"} relative overflow-hidden`}
+       ref={sectionRefs.comparison}
+    >
+      <div className="absolute inset-0 z-0">
+        <div className="absolute top-1/4 left-1/4 w-1/2 h-1/2 bg-blue-500/10 rounded-full filter blur-[120px]"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-1/3 h-1/3 bg-amber-500/10 rounded-full filter blur-[100px]"></div>
+      </div>
+      <div className="container mx-auto px-4 relative z-10">
+        <motion.div
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 inline-block">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-amber-500 to-orange-500">
+              游戏画面对比
+            </span>
+          </h2>
+          <p className={`text-xl max-w-3xl mx-auto ${theme === "dark" ? "text-gray-300" : "text-gray-600"}`}>
+            直观感受 EliteLee 典藏级现实整合包带来的震撼视觉提升
+          </p>
+        </motion.div>
+        
+        {/* 主要对比展示区 */}
+        <motion.div
+          className="mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+        >
+          <div className={`rounded-2xl overflow-hidden shadow-2xl ${theme === "dark" ? "bg-gray-900" : "bg-white"}`}>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
+              {/* 原版画面 */}
+              <div className="relative p-6 border-b lg:border-b-0 lg:border-r border-gray-800">
+                <div className="absolute top-6 left-6 bg-red-500 text-white px-4 py-1 rounded-full text-sm font-bold">
+                  原版画面
+                </div>
+                <div className="rounded-xl overflow-hidden shadow-lg mt-8">
+                  <img
+                    src="https://lf-code-agent.coze.cn/obj/x-ai-cn/337367286018/attachment/原版1_20260118001039.png"
+                    alt="GTA V 原版游戏画面"
+                    className="w-full h-auto object-cover transition-transform duration-700 hover:scale-[1.02]"
+                  />
+                </div>
+                <div className="mt-6">
+                  <h3 className="text-xl font-bold mb-3">原版游戏表现</h3>
+                  <p className={`${theme === "dark" ? "text-gray-400" : "text-gray-600"}`}>
+                    原版GTA V虽然在2013年发布时表现出色，但随着技术发展，其图形质量已显老旧。
+                    存在光影效果简单、材质细节不足、反射效果有限等问题。
+                  </p>
+                </div>
+              </div>
+              
+              {/* 整合包画面 */}
+              <div className="relative p-6">
+                <div className="absolute top-6 left-6 bg-green-500 text-white px-4 py-1 rounded-full text-sm font-bold">
+                  整合包画面
+                </div>
+                <div className="rounded-xl overflow-hidden shadow-lg mt-8">
+                  <img
+                    src="https://lf-code-agent.coze.cn/obj/x-ai-cn/337367286018/attachment/整合包1_20260118001039.png"
+                    alt="EliteLee 整合包游戏画面"
+                    className="w-full h-auto object-cover transition-transform duration-700 hover:scale-[1.02]"
+                  />
+                </div>
+                <div className="mt-6">
+                  <h3 className="text-xl font-bold mb-3">EliteLee 整合包提升</h3>
+                  <p className={`${theme === "dark" ? "text-gray-400" : "text-gray-600"}`}>
+  EliteLee整合包通过NVE+RTGI+ENB技术组合，实现了次世代级别的视觉提升，同时加入了ENB光追注入，使光影效果更加真实自然。
+  增强了光影效果、材质细节、反射质量，同时大幅提升了植被系统，使游戏画面达到照片级真实感。
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+        
+        {/* 详细对比点 */}
+  <motion.div
+    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.2 }}
+        >
+  {[
+    {
+      title: "光照系统",
+      icon: "fa-lightbulb",
+      description: "整合包实现了更精确的全局光照、环境光遮蔽和动态阴影，营造更真实的光影氛围"
+    },
+    {
+      title: "材质细节",
+      icon: "fa-paint-brush",
+      description: "大幅提升了纹理分辨率和材质质量，使建筑、车辆和环境细节更加清晰可辨"
+    },
+    {
+      title: "反射效果",
+      icon: "fa-wand-magic-sparkles",
+      description: "增强的镜面反射和环境反射效果，让车辆、水面和玻璃表面呈现更真实的镜像"
+    },
+    {
+      title: "色彩调校",
+      icon: "fa-palette",
+      description: "专业级的色彩分级和色调映射，使游戏画面色彩更加丰富自然且富有层次感"
+    },
+    {
+      title: "植被增强",
+      icon: "fa-tree",
+      description: "重构了城市与荒野植被系统，新增数十万个精细植被实体，修复了植被反射缺失的问题"
+    }
+  ].map((item, index) => (
+            <motion.div
+              key={item.title}
+              className={`p-6 rounded-xl ${theme === "dark" ? "bg-gray-900 border border-gray-800" : "bg-white shadow-lg"}`}
+              whileHover={{ y: -5 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              <div className={`w-12 h-12 rounded-full flex items-center justify-center mb-4 bg-amber-500/20 text-amber-500`}>
+                <i className={`fa-solid ${item.icon}`}></i>
+              </div>
+              <h3 className="text-xl font-bold mb-3">{item.title}</h3>
+              <p className={`${theme === "dark" ? "text-gray-400" : "text-gray-600"} text-sm`}>
+                {item.description}
+              </p>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
+    </section>
+
+
     <section
       ref={sectionRefs.nve}
       className={`py-20 ${theme === "dark" ? "bg-gray-900" : "bg-gray-50"}`}>
